@@ -1,0 +1,71 @@
+<head>
+    <title>chat</title>
+</head>
+
+<body>
+    <div class="row">
+        {{> rooms}}
+        {{renderPage}}
+    </div>
+</body>
+
+<template name="home">
+    <div class="span6">
+        <h1>Welcome to meteor chat!</h1>
+        <p>Select a room to chat, or create new one!</p>
+    </div>
+</template>
+
+<template name="rooms">
+    <form name="new_row">
+        <table id="rooms" class="table table-stripped span1">
+            <thead>
+                <tr>
+                    <th>Room name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each rooms}}
+                <tr>
+                    <td><a href="/rooms/{{_id}}">{{name}}</a></td>
+                </tr>
+                {{/each}}
+                <tr>
+                    <td colspan="3">
+                        <input type="text" name="name" placeholder="Room name" />
+                        <button class="btn btn-primary pull-right" type="submit">
+                            <i class="icon-plus"></i>Create Room
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</template>
+
+<template name="room">
+    <div class="span11">
+        {{#with room}}
+        <h1>Welcome to {{name}}</h1></p>
+        {{/with}}
+        <table id="chat" class="table table-striped">
+            <tbody>
+                <ul>
+                    {{#each messages}}
+                        <li><strong>{{author}}: </strong> {{text}}</li>
+                    {{/each}}
+                </ul>
+                <tr>
+                    <td colspan="2">
+                        <form name="new_message">
+                            <input type="text" name="text"></input>
+                            <button type="submit" class="btn btn-primary pull-right">
+                                <i class="icon-envelope"></i> Send message
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</template>
