@@ -39,7 +39,7 @@ Template.room.events({
         event.preventDefault();
 
         var message = {
-            author: "test",
+            author: $(event.target).find('[name=nickname]').val(),
             text: $(event.target).find('[name=text]').val(),
             roomid: Session.get('currentRoomId')
         };
